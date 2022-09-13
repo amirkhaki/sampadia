@@ -98,4 +98,5 @@ def like_post(sess, post_id):
 if __name__ == '__main__':
     sess = get_logged_in_sess()
     userid = '1'
-    like(sess, userid)
+    post_count = 500
+    like(sess, userid, post_count)
