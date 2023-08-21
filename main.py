@@ -82,9 +82,6 @@ def like(sess, uid, maxdepth):
                                             maxdepth)
     i = 0
     for post in posts:
-        i += 1
-        if i % 10 == 0:
-            print("end of liking posts in depth " + str(i / 10).split('.')[0])
         post_id = post.split("/")[-1].replace("post-", "")
         like_data = {
             "_xfRequestUri": post,
@@ -96,6 +93,9 @@ def like(sess, uid, maxdepth):
             resp = sess.post(f"{base_url}/forum/posts/{post_id}/react?reaction_id=1", data=like_data)
             resp = sess.post(f"{base_url}/forum/posts/{post_id}/react?reaction_id=8", data=like_data)
             print("post with id " + post_id + " liked")
+            i += 1
+        if i % 10 == 0:
+            print("end of liking posts in depth " + str(i / 10).split('.')[0])
 
 
 if __name__ == '__main__':
