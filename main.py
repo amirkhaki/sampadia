@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 base_url = input('your xenforo forum address ( for example : https://www.sampadia.com ) : ')
-Username = input('your username ( for example : hmiddot )')
-Password = input('your password ( for example : 1234 )')
+Username = input('your username ( for example : hmiddot ) : ')
+Password = input('your password ( for example : 1234 ) : ')
 depth = 0
 
 
