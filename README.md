@@ -1,5 +1,5 @@
 # ALS - Auto Like For Sampadia
-auto like for sampadia.com<br>
+auto like for all of xenforo forums ( sampadia.com too )<br>
 this is only a bs4 Excersize to<br>
 like all posts a user published !<br>
 to learn how to work with this only <br>
