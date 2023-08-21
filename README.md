@@ -4,5 +4,4 @@ auto like for sampadia.com<br>
 this is only a bs4 Excersize to<br>
 like all posts a user published !<br>
 to learn how to work with this only <br>
-
 open <a href="https://sampadia.com/forum/threads/115778/">this</a> link
