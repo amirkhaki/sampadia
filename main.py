@@ -101,6 +101,6 @@ def like(sess, uid, maxdepth):
 if __name__ == '__main__':
     sess = get_logged_in_sess()
     userid = str(input("please type id of user ( id is a number not string ) : "))
-    maxdepth = int(input("please type max depth to crawl ( 5 is best ): "))
+    maxdepth = int(input("please type max depth to crawl ( 5 is best ) : "))
     like(sess, userid, maxdepth)
     print("the end :)")
