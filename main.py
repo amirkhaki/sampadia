@@ -1,12 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-import random
-import string
-import time
 
 base_url = 'https://www.sampadia.com'
-Username = 'hmiddot'
-Password = '14361Ha@'
+Username = ''
+Password = ''
 depth = 0
 
 
