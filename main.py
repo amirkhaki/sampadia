@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 base_url = 'https://www.sampadia.com'
-Username = '{username}'
-Password = '{pass}'
+Username = '{your username}'
+Password = '{your password}'
 depth = 0
 
 
@@ -46,7 +46,6 @@ def parse_posts_page_10(soup):
     posts = soup.select('.contentRow-title a')
     token = get_xf_token(soup)
     new_url = base_url + soup.select_one(".block-footer-controls a")['href']
-    print(str(depth) + "th depth end")
     return [post['href'] for post in posts], token, new_url
 
 
@@ -55,11 +54,14 @@ def get_post_links_and_token(sess, url, maxdepth):
     resp = sess.get(url)
     url = resp.url
     soup = BeautifulSoup(resp.content, 'html.parser')
-    maxd = soup.find_all(class_="contentRow-title")
-    for i in range(1, len(maxd)):
+    di = soup.find_all(class_="pageNav-page")[len(soup.find_all(class_="pageNav-page")) - 1]
+    di = di.find('a').decode_contents()
+    di = int(di)
+    for i in range(1, di + 1):
         global depth
-        if i % 10 == 0:
+        if i == di:
             print("crawling posts in page " + str(i))
+            print("end of depth " + str(depth + 1))
             resp = sess.get(url + "&page=" + str(i))
             new_posts, token, new_url = parse_posts_page_10(BeautifulSoup(resp.content, 'html.parser'))
             post_urls += new_posts
@@ -82,6 +84,7 @@ def like(sess, uid, maxdepth):
                                             maxdepth)
     i = 0
     for post in posts:
+        i += 1
         post_id = post.split("/")[-1].replace("post-", "")
         like_data = {
             "_xfRequestUri": post,
@@ -93,13 +96,11 @@ def like(sess, uid, maxdepth):
             resp = sess.post(f"{base_url}/forum/posts/{post_id}/react?reaction_id=1", data=like_data)
             resp = sess.post(f"{base_url}/forum/posts/{post_id}/react?reaction_id=8", data=like_data)
             print("post with id " + post_id + " liked")
-            i += 1
-        if i % 10 == 0:
-            print("end of liking posts in depth " + str(i / 10).split('.')[0])
 
 
 if __name__ == '__main__':
     sess = get_logged_in_sess()
     userid = '1'
-    maxdepth = 200
+    maxdepth = 5
     like(sess, userid, maxdepth)
+    print("the end :)")
