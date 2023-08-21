@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-base_url = 'https://www.sampadia.com'
-Username = '{your username}'
-Password = '{your password}'
+base_url = input('your xenforo forum address ( for example : https://www.sampadia.com )')
+Username = input('your username ( for example : hmiddot )')
+Password = input('your password ( for example : 1234 )')
 depth = 0
 
 
@@ -100,7 +100,7 @@ def like(sess, uid, maxdepth):
 
 if __name__ == '__main__':
     sess = get_logged_in_sess()
-    userid = '1'
-    maxdepth = 5
+    userid = str(input("please type id of user ( id is a number not string ) : "))
+    maxdepth = int(input("please type max depth to crawl ( 5 is best ): "))
     like(sess, userid, maxdepth)
     print("the end :)")
