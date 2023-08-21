@@ -58,7 +58,7 @@ def get_post_links_and_token(sess, url, maxdepth):
     maxd = soup.find_all(class_="contentRow-title")
     for i in range(1, len(maxd)):
         global depth
-        if i == 10:
+        if i % 10 == 0:
             print("crawling posts in page " + str(i))
             resp = sess.get(url + "&page=" + str(i))
             new_posts, token, new_url = parse_posts_page_10(BeautifulSoup(resp.content, 'html.parser'))
